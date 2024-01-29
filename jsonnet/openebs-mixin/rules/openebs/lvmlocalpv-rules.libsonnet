@@ -20,7 +20,7 @@ function(param) {
               labels: {
                 severity: 'critical',
                 product: 'openebs',
-                engine: 'lvm-localpv',
+                engine: 'localpv-lvm',
               },
             },
             {
@@ -36,7 +36,7 @@ function(param) {
               labels: {
                 severity: 'critical',
                 product: 'openebs',
-                engine: 'lvm-localpv',
+                engine: 'localpv-lvm',
               },
             },
             {
@@ -52,7 +52,7 @@ function(param) {
               labels: {
                 severity: 'critical',
                 product: 'openebs',
-                engine: 'lvm-localpv',
+                engine: 'localpv-lvm',
               },
             },
           ],

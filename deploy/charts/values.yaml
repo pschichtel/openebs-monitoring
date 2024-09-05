@@ -94,31 +94,21 @@ kube-prometheus-stack:
 
     config:
       global:
-        smtp_smarthost: 'smtp.org:587'  
-        smtp_from: 'user@org.com'
-        smtp_auth_username: 'user@org.com'
-        smtp_auth_password: "password"
         resolve_timeout: 5m
       route:
         group_by: ["alertname", "job", "volName"]
         group_wait: 30s
         group_interval: 5m
         repeat_interval: 4h
-        receiver: team-X-mails
-
+        receiver: "null"
+        ## This route specifically groups openebs alerts.
         routes:
           - matchers:
-              - service="openebs"
-            receiver: openebs-email
+              - product="openebs"
+            receiver: "null"
+      ## Add receivers as required. Ref: https://prometheus.io/docs/alerting/latest/configuration/#receiver-integration-settings
       receivers:
-        - name: 'team-X-mails'
-          email_configs:
-            - to: 'team-X+alerts@example.org'
-              send_resolved: true
-        - name: 'openebs-email'
-          email_configs:
-            - to: 'openebs-monitoring@org.com'
-              send_resolved: true
+        - name: "null"
       templates:
         - /etc/alertmanager/config/*.tmpl
 
@@ -287,11 +277,11 @@ openebsMonitoringAddon:
         any: true
 
   npd:
-    enabled: true
+    enabled: false
     dashboards:
-      enabled: true
+      enabled: false
     alertRules:
-      enabled: true
+      enabled: false
 
   volume:
     enabled: true

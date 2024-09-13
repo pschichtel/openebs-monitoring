@@ -19,6 +19,8 @@ function(param) {
               'for': '5m',
               labels: {
                 severity: 'critical',
+                product: 'openebs',
+                engine: 'lvm-localpv',
               },
             },
             {
@@ -33,6 +35,8 @@ function(param) {
               'for': '5m',
               labels: {
                 severity: 'critical',
+                product: 'openebs',
+                engine: 'lvm-localpv',
               },
             },
             {
@@ -47,6 +51,8 @@ function(param) {
               'for': '5m',
               labels: {
                 severity: 'critical',
+                product: 'openebs',
+                engine: 'lvm-localpv',
               },
             },
           ],

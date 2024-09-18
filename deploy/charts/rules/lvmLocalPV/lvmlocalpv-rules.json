@@ -14,6 +14,8 @@
                "expr": "lvm_vg_missing_pv_count > 0",
                "for": "5m",
                "labels": {
+                  "engine": "localpv-lvm",
+                  "product": "openebs",
                   "severity": "critical"
                }
             },
@@ -28,6 +30,8 @@
                "expr": "((lvm_vg_total_size_bytes - lvm_vg_free_size_bytes)/lvm_vg_total_size_bytes)*100 > 90",
                "for": "5m",
                "labels": {
+                  "engine": "localpv-lvm",
+                  "product": "openebs",
                   "severity": "critical"
                }
             },
@@ -42,6 +46,8 @@
                "expr": "lvm_lv_used_percent{segtype=\"thin-pool\"} > 90",
                "for": "5m",
                "labels": {
+                  "engine": "localpv-lvm",
+                  "product": "openebs",
                   "severity": "critical"
                }
             }

@@ -101,6 +101,12 @@ kube-prometheus-stack:
         group_interval: 5m
         repeat_interval: 4h
         receiver: "null"
+        ## This route specifically groups openebs alerts.
+        routes:
+          - matchers:
+              - product="openebs"
+            receiver: "null"
+      ## Add receivers as required. Ref: https://prometheus.io/docs/alerting/latest/configuration/#receiver-integration-settings
       receivers:
         - name: "null"
       templates:
@@ -271,11 +277,11 @@ openebsMonitoringAddon:
         any: true
 
   npd:
-    enabled: true
+    enabled: false
     dashboards:
-      enabled: true
+      enabled: false
     alertRules:
-      enabled: true
+      enabled: false
 
   volume:
     enabled: true

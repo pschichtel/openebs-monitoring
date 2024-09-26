@@ -2,39 +2,30 @@ SHELL=/usr/bin/env bash -o pipefail
 
 BIN_DIR?=$(shell pwd)/tmp/bin
 
-EMBEDMD_BIN=$(BIN_DIR)/embedmd
 JB_BIN=$(BIN_DIR)/jb
-GOJSONTOYAML_BIN=$(BIN_DIR)/gojsontoyaml
 JSONNET_BIN=$(BIN_DIR)/jsonnet
 JSONNETLINT_BIN=$(BIN_DIR)/jsonnet-lint
 JSONNETFMT_BIN=$(BIN_DIR)/jsonnetfmt
-KUBECONFORM_BIN=$(BIN_DIR)/kubeconform
-TOOLING=$(EMBEDMD_BIN) $(JB_BIN) $(GOJSONTOYAML_BIN) $(JSONNET_BIN) $(JSONNETLINT_BIN) $(JSONNETFMT_BIN) $(KUBECONFORM_BIN)
+TOOLING=$(JB_BIN) $(JSONNET_BIN) $(JSONNETLINT_BIN) $(JSONNETFMT_BIN)
 
 JSONNETFMT_ARGS=-n 2 --max-blank-lines 2 --string-style s --comment-style s
 
-KUBE_VERSION?="1.20.0"
-
-all:  lint fmt generate
+all:  lint fmt
 
 .PHONY: clean
 clean:
 	# Remove all files and directories ignored by git.
 	git clean -Xfd .
 
-vendor: $(JB_BIN) jsonnetfile.json jsonnetfile.lock.json
-	rm -rf vendor
-	$(JB_BIN) install
-
 .PHONY: fmt
 fmt: $(JSONNETFMT_BIN)
-	find . -name 'vendor' -prune -o -name '*.libsonnet' -print -o -name '*.jsonnet' -print | \
+	find . -name '*.libsonnet' -print -o -name '*.jsonnet' -print | \
 		xargs -n 1 -- $(JSONNETFMT_BIN) $(JSONNETFMT_ARGS) -i
 
 .PHONY: lint
-lint: $(JSONNETLINT_BIN) vendor
-	find . -name 'vendor' -prune -o -name '*.libsonnet' -print -o -name '*.jsonnet' -print | \
-		xargs -n 1 -- $(JSONNETLINT_BIN) -J vendor
+lint: $(JSONNETLINT_BIN)
+	find . -name '*.libsonnet' -print -o -name '*.jsonnet' -print | \
+		xargs -n 1 -- $(JSONNETLINT_BIN)
 
 
 $(BIN_DIR):

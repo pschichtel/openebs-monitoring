@@ -21,10 +21,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Jsonnet formatter
+      - name: Jsonnet formatter and linter
         run: |
-          cd jsonnet && make --always-make fmt
-
-      - name: Jsonnet linter
-        run: |
-          cd jsonnet && make --always-make lint
+          cd jsonnet && make --always-make all
+          

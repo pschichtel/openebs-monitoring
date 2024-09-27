@@ -1,11 +1,21 @@
 module _ // go.mod created for tooling dependencies
 
-go 1.15
+go 1.19
 
 require (
-	github.com/brancz/gojsontoyaml v0.0.0-20200602132005-3697ded27e8c
-	github.com/campoy/embedmd v1.0.0
-	github.com/google/go-jsonnet v0.17.1-0.20210101181740-31d71aaccda6 // 7 commits after 0.17.0. Needed by jsonnet linter
+	github.com/google/go-jsonnet v0.20.0
 	github.com/jsonnet-bundler/jsonnet-bundler v0.4.0
-	github.com/yannh/kubeconform v0.4.7
+)
+
+require (
+	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc // indirect
+	github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf // indirect
+	github.com/fatih/color v1.12.0 // indirect
+	github.com/mattn/go-colorable v0.1.8 // indirect
+	github.com/mattn/go-isatty v0.0.12 // indirect
+	github.com/pkg/errors v0.8.0 // indirect
+	golang.org/x/sys v0.1.0 // indirect
+	gopkg.in/alecthomas/kingpin.v2 v2.2.6 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
+	sigs.k8s.io/yaml v1.2.0 // indirect
 )
